@@ -32,7 +32,7 @@ module.exports.update = (event, context, callback) => {
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 'Content-Type': 'text/plain' },
-        body: 'Couldn\'t create the item.',
+        body: 'Couldn\'t update the contact item in DDB.',
       });
       return;
     }
