@@ -24,7 +24,7 @@ module.exports.list = (event, context, callback) => {
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 'Content-Type': 'text/plain' },
-        body: 'Couldn\'t fetch the items.',
+        body: 'Couldn\'t fetch the contact items from ddb.',
       });
       return;
     }
