@@ -20,7 +20,6 @@ module.exports.list = (event, context, callback) => {
   ddb.scan(params, (error, result) => {
     // handle potential errors
     if (error) {
-      console.error("Error: ", error);
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 'Content-Type': 'text/plain' },
@@ -32,7 +31,7 @@ module.exports.list = (event, context, callback) => {
     // create a response with status code and body
     const response = {
       statusCode: 200,
-      // headers: {'Access-Control-Allow-Origin' : '*'}, // For CORS
+      headers: {'Access-Control-Allow-Origin' : '*'}, // For CORS
       body: JSON.stringify(result),
     };
     callback(null, response);
