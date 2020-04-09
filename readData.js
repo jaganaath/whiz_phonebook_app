@@ -17,7 +17,7 @@ module.exports.get = (event, context, callback) => {
     TableName: 'phonebook_example',
     Key: {
       // contactNumber: data.contactNumber // *** Change - 3 *** //
-      contactNumber: parseInt(data.contactNumber) // *** Change - 4 *** //
+      contactNumber: parseInt(data.contactNumber) // *** Change - 4 *** For converting to integer. When enabling Change-2, comment Change - 3 and uncomment Change - 4 //
     },
   }
   
