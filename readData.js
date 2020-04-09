@@ -9,13 +9,15 @@ AWS.config.update({region:'ap-southeast-2'});
 const ddb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.get = (event, context, callback) => {
-  const data = JSON.parse(event.body);
-
+  const data = JSON.parse(event.body); // *** Change - 1 *** For Postman testing //
+  // const data = event.queryStringParameters; // *** Change - 2 *** For API gateway testing from browser //
+  
   // set parameter with table name and key
   const params = {
     TableName: 'phonebook_example',
     Key: {
-      contactNumber: data.contactNumber
+      // contactNumber: data.contactNumber // *** Change - 3 *** //
+      contactNumber: parseInt(data.contactNumber) // *** Change - 4 *** //
     },
   }
   
@@ -23,10 +25,9 @@ module.exports.get = (event, context, callback) => {
   ddb.get(params, (error, result) => {
     // handle potential errors
     if (error) {
-      console.error("Error: ", error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        // headers: { 'Content-Type': 'text/plain' },
         body: 'Couldn\'t fetch the contact item from DDB.',
       });
       return;
@@ -35,6 +36,7 @@ module.exports.get = (event, context, callback) => {
     // create a response with status code and body
     const response = {
       statusCode: 200,
+      headers: {'Access-Control-Allow-Origin' : '*'}, // For CORS
       body: JSON.stringify(result),
     };
     callback(null, response);
