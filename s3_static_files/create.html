@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <title>Phonebook App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="index.js"> </script>
+<body>
+        <div class="w3-row-padding ">
+                <div class="w3-twothird">
+                    <h2>Phonebook App - AWS Fullstack Demo</h2>
+                    <h5><a href="index.html"><< Go back to home</a></h5>
+                    <h3>Create Contact</h3>
+                    <div style="margin:20px 0px;">
+                        <label for="ph_number">Phone Number:</label><br>
+                        <input type="text" id="ph_number" name="ph_number" placeholder="Ener phone number" /><br><br>
+                        <label for="contact_name">Contact name:</label><br>
+                        <input type="text" id="contact_name" name="contact_name"  placeholder="Ener contact name" /><br><br>
+                        <input type="button" value="Submit" onclick="createContact()" />
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
