@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <title>Phonebook App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="index.js"> </script>
+<body>
+
+<div class="w3-row-padding ">
+    <div class="w3-twothird">
+        <h2>Phonebook App - AWS Fullstack Demo</h2>
+
+        <!-- Create contact link -->
+        <h5><a href="createContact.html">Create Contact</a></h5>
+
+        <!-- Search section -->
+        <div class="custom-margin">
+            <input type="text" id="search_contact_number" placeholder="Ener phone number" />
+            <input type="button" value="Search contact" onclick="searchContact()" /> | <span onclick="clearSearchResults()"><u>Clear search results</u></span>
+        </div>
+
+        <!-- Search results -->
+        <table class="w3-table w3-striped w3-bordered w3-border" id="search_results" style="display: none;">
+            <thead>
+                <th colspan="3">Search Results</th>
+            </thead>
+            <thead class="w3-teal" id="search_results_heading">
+                <th style="width:30%">Name</th>
+                <th>Phone Number</th>
+                <th></th>
+            </thead>
+        </table>
+
+        <!-- All contacts list -->
+        <table class="w3-table w3-striped w3-bordered w3-border custom-margin">
+            <thead>
+                <th colspan="3">All contacts</th>
+            </thead>
+            <thead class="w3-teal" id="all_contacts_heading">
+                <th style="width:30%">Name</th>
+                <th>Phone Number</th>
+                <th></th>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>
