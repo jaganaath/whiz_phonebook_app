@@ -15,7 +15,7 @@ module.exports.create = (event, context, callback) => {
   const params = {
     TableName: 'phonebook_example',
     Item: {
-      contactNumber: parseInt(data.contactNumber),
+      contactNumber: data.contactNumber,
       contactName: data.contactName
     },
   };
