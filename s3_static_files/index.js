@@ -1,6 +1,6 @@
 // API Gateway Endpoints
-const $api_endpoint_base = "<<your_endpoint>>";
-const $api_endpoint_resource = "<<your_endpoint>>";
+const $api_endpoint_base = "https://pbyq32ahif.execute-api.ap-southeast-2.amazonaws.com/dev";
+const $api_endpoint_resource = "https://pbyq32ahif.execute-api.ap-southeast-2.amazonaws.com/dev/contact";
 
 // Get all contacts and display in table
 $.getJSON( $api_endpoint_base, function( data ) {
@@ -84,7 +84,7 @@ function searchContact(){
             $(".dynamic_result_fields").detach(); // Delete the existing DOM elements, so that we can insert new search result
             if(data.Item.contactName) {    
                 // Build the DOM and insert the result
-                $results_contact_dom = '<tr class="dynamic_result_fields"><td style="width:30%"><input type="text" id="search_contact_result" value="'+data.Item.contactName+'" placeholder="Enter contact name"/></td><td>'+data.Item.contactNumber+'</td><td><a href="#" onclick="updateContact()">Update</a> | <a href="#" onclick="deleteContact('+data.Item.contactNumber+')">Delete</a></td></tr>';
+                $results_contact_dom = '<tr class="dynamic_result_fields"><td style="width:30%"><input type="text" id="search_contact_result" value="'+data.Item.contactName+'" placeholder="Enter contact name"/></td><td><input type="hidden" id="search_contact_nunber_result" value="'+data.Item.contactNumber+'" />'+data.Item.contactNumber+'</td><td><a href="#" onclick="updateContact()">Update</a> | <a href="#" onclick="deleteContact('+data.Item.contactNumber+')">Delete</a></td></tr>';
                 $( $results_contact_dom ).insertAfter( $( "#search_results_heading" ) );
             } else {
                 // When no records found
@@ -107,17 +107,18 @@ function clearSearchResults() {
 
 // Update contact
 function updateContact() {
-    $contact_to_update = $("#search_contact_result").val();
-
+    $contact_name_to_update = $("#search_contact_result").val();
+    $contact_number_to_update = $("#search_contact_nunber_result").val();
+    
     // Make sure that its not empty
-    if($contact_to_update.length ==0){
+    if($contact_name_to_update.length ==0 && $contact_number_to_update.length){
         alert("Ener a contact name to update");
         return false;
     }
     $.ajax({
         url: $api_endpoint_resource,
         type: 'PUT',
-        data: '{"contactNumber":345343434, "contactName": "'+$contact_to_update+'"}',
+        data: '{"contactNumber":'+$contact_number_to_update+', "contactName": "'+$contact_name_to_update+'"}',
         success: function(data) {
             // Success
             alert("Contact updated successfully");
